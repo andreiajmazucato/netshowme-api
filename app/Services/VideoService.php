@@ -1,11 +1,22 @@
 <?php
+
 namespace App\Services;
 
 use App\Models\Video;
+use App\Repositories\VideoRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class VideoService
 {
+    /**
+     * @var VideoRepository
+     */
+    protected $videoRepository;
+
+    public function __construct(VideoRepository $videoRepository) {
+        $this->videoRepository = $videoRepository;
+    }
+
     /**
      * @param string|null $titleFilter
      * @param int $perPage
@@ -13,13 +24,7 @@ class VideoService
      */
     public function search(?string $titleFilter, int $perPage): LengthAwarePaginator
     {
-        $query = Video::query();
-
-        if ($titleFilter) {
-            $query->where('title', 'like', '%' . $titleFilter . '%');
-        }
-
-        return $query->paginate($perPage, ['*'], '_page');
+        return $this->videoRepository->search($titleFilter, $perPage);
     }
 
     /**
@@ -28,8 +33,8 @@ class VideoService
      */
     public function getAndIncrementViews(int $id): Video
     {
-        $video = Video::findOrFail($id);
-        $video->increment('views');
+        $video = $this->videoRepository->findOrFail($id);
+        $video->update(['views' => $video->views + 1]);
 
         return $video;
     }
@@ -40,8 +45,8 @@ class VideoService
      */
     public function incrementLikes(int $id): Video
     {
-        $video = Video::findOrFail($id);
-        $video->increment('likes');
+        $video = $this->videoRepository->findOrFail($id);
+        $video->update(['likes' => $video->likes + 1]);
 
         return $video;
     }

@@ -10,5 +10,5 @@ Route::get('/user', function (Request $request) {
 
 
 Route::get('videos', [VideoController::class, 'index']);
-Route::get('videos/{id}', [VideoController::class, 'show']);
-Route::patch('videos/{id}', [VideoController::class, 'update']);
+Route::get('video/{id}', [VideoController::class, 'show']);
+Route::patch('video/{id}', [VideoController::class, 'update']);
