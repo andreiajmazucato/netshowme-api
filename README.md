@@ -41,7 +41,7 @@ DB_USERNAME=root
 DB_PASSWORD= 
 ````
 
-Para rodar a aplicação, executando os comandos: 
+Para rodar a aplicação, execute os comandos: 
 
 
 ````
@@ -62,7 +62,7 @@ Para verificar se está funcionando acesse as URL´s:
 
 A url 1. irá retornar a lista de videos cadastradas no banco em json
 
-A url 2. irá retornar um registro pelo id - 22281
+A url 2. irá retornar um registro pelo id = 22281
 
 
 ## Testes automatizados
@@ -75,6 +75,12 @@ php artisan test
 - Os testes de Controllers estão em tests/Feature/Controller/VideosControllerTest.php
 
 - Os testes de Services estão em tests/Unit/Services/VideoServiceTest.php
+
+
+## Informações adicionais
+
+Esta aplicação tem como objetivo desenvolver uma API REST FULL, utilizando os reqursos do laravel como: Eloquent, Injeção de Dependência com Services, Repositories, Resources, Requests, além Seeder, Factory e Testes unitários.
+
 
 
 
