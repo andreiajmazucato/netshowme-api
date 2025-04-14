@@ -60,7 +60,7 @@ Para verificar se está funcionando acesse as URL´s:
 
 2 - http://127.0.0.1:8000/api/video/22281
 
-A url 1. irá retornar a lista de videos cadastradas no banco em json
+A url 1. irá retornar a lista de videos em json cadastrados no banco
 
 A url 2. irá retornar um registro pelo id = 22281
 
