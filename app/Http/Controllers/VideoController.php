@@ -31,7 +31,7 @@ class VideoController extends Controller
         try {
             $videos = $this->videoService->search(
                 $request->input('title_contains'),
-                $request->input('_per_page', 10)
+                $request->input('_per_page')
             );
 
             return response()->json(VideoResource::collection($videos));

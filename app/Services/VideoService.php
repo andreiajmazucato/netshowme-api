@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Video;
 use App\Repositories\VideoRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class VideoService
 {
@@ -19,10 +20,10 @@ class VideoService
 
     /**
      * @param string|null $titleFilter
-     * @param int $perPage
-     * @return LengthAwarePaginator
+     * @param int|null $perPage
+     * @return LengthAwarePaginator|Collection
      */
-    public function search(?string $titleFilter, int $perPage): LengthAwarePaginator
+    public function search(?string $titleFilter, ?int $perPage): LengthAwarePaginator|Collection
     {
         return $this->videoRepository->search($titleFilter, $perPage);
     }

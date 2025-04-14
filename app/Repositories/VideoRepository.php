@@ -4,15 +4,16 @@ namespace App\Repositories;
 
 use App\Models\Video;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class VideoRepository
 {
     /**
      * @param string|null $titleFilter
-     * @param int $perPage
-     * @return LengthAwarePaginator
+     * @param int|null $perPage
+     * @return LengthAwarePaginator|Collection
      */
-    public function search(?string $titleFilter, int $perPage): LengthAwarePaginator
+    public function search(?string $titleFilter, ?int $perPage): LengthAwarePaginator|Collection
     {
         $query = Video::query();
 
@@ -20,7 +21,7 @@ class VideoRepository
             $query->where('title', 'like', '%' . $titleFilter . '%');
         }
 
-        return $query->paginate($perPage, ['*'], '_page');
+        return $perPage ? $query->paginate($perPage, ['*'], '_page') : $query->get() ;
     }
 
     /**
