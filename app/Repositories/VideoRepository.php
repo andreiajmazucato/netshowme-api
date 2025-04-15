@@ -10,6 +10,7 @@ class VideoRepository
 {
     /**
      * @param string|null $titleFilter
+     * @param int|null $page
      * @param int|null $perPage
      * @return LengthAwarePaginator|Collection
      */

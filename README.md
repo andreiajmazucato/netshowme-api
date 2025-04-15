@@ -83,5 +83,11 @@ Esta aplicação tem como objetivo desenvolver uma API REST FULL, utilizando os 
 
 
 
+###### ---
+
+
+Desenvolvido por Andreia Mazucato.
+
+#### Obrigada! :-)
 
  

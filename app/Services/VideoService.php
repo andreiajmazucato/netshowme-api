@@ -35,9 +35,16 @@ class VideoService
     public function getAndIncrementViews(int $id): Video
     {
         $video = $this->videoRepository->findOrFail($id);
-        $video->update(['views' => $video->views + 1]);
+        $ip = request()->ip();
 
-        return $video;
+        $viewKey = "video_viewed_{$id}_{$ip}";
+
+        if (!cache()->has($viewKey)) {
+            $video->update(['views' => $video->views + 1]);
+            cache()->put($viewKey, true, now()->addHours(2));
+        }
+
+            return $video;
     }
 
     /**
